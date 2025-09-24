@@ -1,0 +1,4 @@
+Tämän kansion sisälle voi lisäsät SQL tiedostot jotka importataan 
+
+Kun olet tehnyt SQL pohjan exporttaa tiedosto phpmyadminista ja siirrä tiedosto kansioon 
+Tiedot voi myös ladata ja importata täältä!
