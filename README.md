@@ -15,10 +15,13 @@
      Tottakai, jos näitä et halua vertailla tai perestyä sen kummemmin niin käytä: "git pull".
 
 ## MUISTA TEE GIT PULL jos joku tekee muutoksia ennen alhaala olevia kolme komentoa
+
 git pull
---------
+
 git add .
+
 git commit -m "Your commit message here"
+
 git push
 
 
