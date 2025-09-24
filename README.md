@@ -6,7 +6,7 @@
 
   1. Asenna Git: https://git-scm.com/downloads
   3. Mene CMD (Command Prompt) ja käytä: "cd", jotta pääset haluamaasi folderiin. (Muista valita folderi, jost löydät tiedoston helposti)
-  4. Kun olet haluamassasi folderissa (itse Desktopissa) niin kirjoita: "git clone https://github.com/Autsku/Projekti.git" 
+  4. Kun olet haluamassasi folderissa (itse Desktopissa) niin kirjoita: "git clone (sivun git clone linkki)"
   5. Githubissa olveat tiedostot tai folderit pitäisivät näkyä nyt valitsemassasi folderissa.
      
 ## Gitin veto
@@ -14,10 +14,13 @@
   2. Jottei kaikki failit mene sekaisin tai katoa käytä ensin: "git fetch". Se lataa muiden työntämää uutta dataa ilman vanhojen muokkaamista.
      Tottakai, jos näitä et halua vertailla tai perestyä sen kummemmin niin käytä: "git pull".
 
-     
+## MUISTA TEE GIT PULL jos joku tekee muutoksia ennen alhaala olevia kolme komentoa
+git pull
+--------
 git add .
 git commit -m "Your commit message here"
 git push
+
 
 ## Gitin työntö
   1. Varmista että olet valinnut folderin jonka/tiedoston, jonka haluat gittiin työntää.
@@ -40,7 +43,7 @@ Jos muutat config-sanan cookie-sanaksi, PhpMyAdmin-järjestelmään kirjaudutaan
 ## Käyttäjän teko localhostiin
 
 Käyttäjä tunnukset:
-* team1
+* teht2
 * 1234
 
   <img width="834" height="680" alt="image" src="https://github.com/user-attachments/assets/42930f9d-bd20-4fa0-ab27-dec940a5acc4" />
