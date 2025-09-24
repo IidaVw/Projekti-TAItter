@@ -1,5 +1,4 @@
 :root {
-      /* Light mode colors */
       --bg-primary: #ffffff;
       --bg-secondary: #f8f9fa;
       --bg-tertiary: #e9ecef;
@@ -13,7 +12,6 @@
     }
 
     [data-theme="dark"] {
-      /* Dark mode colors */
       --bg-primary: #15202b;
       --bg-secondary: #192734;
       --bg-tertiary: #22303c;
@@ -61,10 +59,14 @@
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 700;
-      color: var(--accent-primary);
+      color: var(--text-primaryaccent-primary);
       text-decoration: none;
+    }
+
+    .logo-highlight {
+        color: var(--accent-primary);
     }
 
     .theme-toggle {

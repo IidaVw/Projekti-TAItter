@@ -10,7 +10,7 @@
 <body>
   <header class="header">
     <div class="header-content">
-      <a href="#" class="logo">TAItter</a>
+      <a href="#" class="logo"><span class="logo-highlight">TAI</span>tter</a> 
       <button class="theme-toggle" onclick="toggleTheme()">
         <span id="theme-icon">🌙</span>
         <span id="theme-text">Dark mode</span>
