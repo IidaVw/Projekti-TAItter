@@ -1,6 +1,7 @@
 # Projekti-TAItter
 
   Trello linkki: https://trello.com/b/ZXwVefVb/projekti-taitter
+  Etusivun linkki: http://localhost/Projekti-TAItter/TAItter/
 
 ## Gitin käyttöön otto
 
