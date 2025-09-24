@@ -1,6 +1,6 @@
 # Projekti-TAItter
 
-  Miltä linki voisi näyttää Koodi kansiolle:
+  Miltä linki voisi näyttää Koodi kansiolle: https://trello.com/b/ZXwVefVb/projekti-taitter
 
 ## Gitin käyttöön otto
 
