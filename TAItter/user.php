@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/log.css">
+    <link rel="stylesheet" href="style/user.css">
     <script src="js/dark-light.js"></script>
     <title>Sign up</title>
 </head>
@@ -18,13 +18,7 @@
     </header>
 
     <section class="content">
-        <form action="-.php" class="log-form">
-            <label for="email">Email/Username:</label>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Submit">
-        </form>
+
     </section>
 </body>
 </html>
