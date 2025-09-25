@@ -18,7 +18,7 @@
     </header>
 
     <section class="content">
-        <form action="-.php" class="sign-form">
+        <form action="-.php" method="post" class="sign-form">
             <label for="fname">First name:</label>
             <input type="text" id="fname" name="fname"><br><br>
             <label for="lname">Last name:</label>

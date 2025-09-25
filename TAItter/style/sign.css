@@ -152,6 +152,8 @@
         width: 60%;
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
+        display: grid;
+        place-items: center; 
     }
 
     .content:hover {

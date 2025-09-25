@@ -148,7 +148,8 @@
         background: var(--bg-secondary);
         border-radius: 20px;
         padding: 15%;
-        margin-top: 100px;
+        margin: auto;
+        margin-top: 3%;
         width: 60%;
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
@@ -156,4 +157,14 @@
 
     .content:hover {
       box-shadow: 0 8px 25px var(--shadow-light);
+    }
+
+    .content h2 {
+        margin-top: -200px;
+        text-align: center;
+    }
+
+    .log-form {
+        margin-top: 50px;
+        left: auto;
     }

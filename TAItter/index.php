@@ -12,7 +12,7 @@
         <div class="header-content">
             <a href="index.php" class="logo"><span class="logo-highlight">TAI</span>tter</a>
             <div class="header-controls">
-                <a href="log.php" class="login-btn">Log In</a>
+                <a href="login.php" class="login-btn">Log In</a>
                 <button class="theme-toggle" onclick="toggleTheme()">
                     <span class="theme-icon moon" id="theme-icon">🌙</span>
                 </button>
@@ -28,7 +28,7 @@
             </p>
            
             <div class="cta-buttons">
-                <a href="sign.php" class="btn-primary">Join TAItter</a>
+                <a href="signup.php" class="btn-primary">Join TAItter</a>
                 <a href="info.php" class="btn-secondary">Learn more</a>
             </div>
             

@@ -18,12 +18,13 @@
     </header>
 
     <section class="content">
-        <form action="-.php" class="log-form">
-            <label for="email">Email/Username:</label>
-            <input type="email" id="email" name="email"><br><br>
+        <h2>Log in</h2>
+        <form action="connect/log.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="usernamex"><br>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Submit">
+            <input type="password" name="password" id="passwordx"><br>
+            <input type="submit" value="Log">
         </form>
     </section>
 </body>

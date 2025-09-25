@@ -135,13 +135,13 @@
 }
 
 @keyframes moonGlow {
-    0% { filter: drop-shadow(0 0 5px rgba(147, 197, 253, 0.3)); }
-    100% { filter: drop-shadow(0 0 10px rgba(147, 197, 253, 0.6)); }
+    0% { filter: drop-shadow(0 0 5px rgba(77, 59, 2, 0.3)); }
+    100% { filter: drop-shadow(0 0 10px rgba(243, 228, 20, 0.6)); }
 }
 
 @keyframes sunPulse {
-    0%, 100% { filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4)); }
-    50% { filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.8)); }
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(104, 3, 3, 0.4)); }
+    50% { filter: drop-shadow(0 0 16px rgba(251, 36, 36, 0.8)); }
 }
 
     .content {
