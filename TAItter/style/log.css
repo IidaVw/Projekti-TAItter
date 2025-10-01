@@ -147,7 +147,7 @@
     .content {
         background: var(--bg-secondary);
         border-radius: 20px;
-        padding: 15%;
+        padding: 40px;
         margin: auto;
         margin-top: 3%;
         width: 60%;
@@ -160,11 +160,10 @@
     }
 
     .content h2 {
-        margin-top: -200px;
         text-align: center;
     }
 
     .log-form {
-        margin-top: 50px;
+        margin-top: 70px;
         left: auto;
     }

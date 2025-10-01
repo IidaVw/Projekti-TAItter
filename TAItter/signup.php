@@ -18,6 +18,7 @@
     </header>
 
     <section class="content">
+        <h2>Sign up</h2>
         <form action="-.php" method="post" class="sign-form">
             <label for="fname">First name:</label>
             <input type="text" id="fname" name="fname"><br><br>

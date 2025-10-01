@@ -24,7 +24,6 @@ function toggleTheme() {
 document.addEventListener('DOMContentLoaded', function() {
     const themeIcon = document.getElementById('theme-icon');
     
-    // Check system preference if no saved theme
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     if (prefersDark) {
