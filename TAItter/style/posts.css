@@ -63,15 +63,37 @@ body {
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover {
-    transform: translateY(-2px);
 }
 
 .logo-highlight {
     color: var(--accent-primary);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-btn {
+    background: transparent;
+    color: var(--accent-primary);
+    padding: 8px 16px;
+    border: 1px solid var(--accent-primary);
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.login-btn:hover {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 20, 60, 0.3);
 }
 
 .theme-toggle {
@@ -149,142 +171,123 @@ body {
     50% { filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.8)); }
 }
 
-.content {
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 0 15px;
+}
+
+.post-section {
     background: var(--bg-secondary);
-    border-radius: 20px;
-    padding: 40px;
-    margin: 3% auto;
-    max-width: 580px;
-    width: 90%;
+    border-radius: 16px;
+    padding: 20px;
     border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px var(--shadow-light);
+    box-shadow: 0 2px 6px var(--shadow-light);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.content:hover {
-    box-shadow: 0 8px 25px var(--shadow-medium);
+.post-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px var(--shadow-medium);
 }
 
-.content h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--text-primary);
-}
-
-.sign-form {
+.user {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
-.form-group {
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), #ff758c);
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.sign-form label {
-    color: var(--text-primary);
-    font-weight: 500;
-    font-size: 0.95rem;
-}
-
-.sign-form input[type="text"],
-.sign-form input[type="email"],
-.sign-form input[type="password"],
-.sign-form input[type="date"] {
-    background: var(--bg-primary);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-size: 1rem;
-    color: var(--text-primary);
-    transition: all 0.3s ease;
-    font-family: inherit;
-}
-
-.sign-form input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.5);
-    cursor: pointer;
-}
-
-[data-theme="dark"] .sign-form input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.8);
-}
-
-.sign-form input[type="text"]:focus,
-.sign-form input[type="email"]:focus,
-.sign-form input[type="password"]:focus,
-.sign-form input[type="date"]:focus {
-    outline: none;
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
-    transform: translateY(-1px);
-}
-
-.sign-form input[type="text"]:hover,
-.sign-form input[type="email"]:hover,
-.sign-form input[type="password"]:hover,
-.sign-form input[type="date"]:hover {
-    border-color: var(--text-secondary);
-}
-
-.sign-form input[type="submit"] {
-    background: var(--accent-primary);
+    align-items: center;
+    justify-content: center;
     color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.sign-form input[type="submit"]:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.3);
-}
-
-.sign-form input[type="submit"]:active {
-    transform: translateY(0);
-}
-
-.sign-form p {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-top: 10px;
-}
-
-.sign-form p a {
-    color: var(--accent-primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.sign-form p a:hover {
+    font-size: 16px;
     color: var(--text-primary);
-    text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    .content {
-        margin: 5% auto;
-        padding: 30px 20px;
-    }
+.handle {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
 
-    .content h2 {
-        font-size: 1.5rem;
-    }
+.tweet-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
 
-    .logo {
-        font-size: 1.5rem;
-    }
+.tweet-actions {
+    display: flex;
+    gap: 25px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.action {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.action:hover {
+    color: var(--accent-primary);
+}
+
+/* Single image */
+.tweet-image {
+    margin: 12px 0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.tweet-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.tweet-image img:hover {
+    transform: scale(1.02);
+}
+
+/* Multiple images (grid layout) */
+.tweet-gallery {
+    margin: 12px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.tweet-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.tweet-gallery img:hover {
+    transform: scale(1.03);
 }
