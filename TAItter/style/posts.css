@@ -171,27 +171,143 @@ body {
     50% { filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.8)); }
 }
 
+/* -------------------- CONTENT LAYOUT -------------------- */
+/* Container layout */
 .container {
-    max-width: 700px;
-    margin: 40px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    padding: 0 15px;
+    display: grid;
+    grid-template-columns: 350px 1fr 250px;
+    gap: 20px;
+    padding: 0;
+    max-width: 1920px;
+    margin: auto;
+    height: calc(100vh - 80px); /* full viewport minus header */
 }
 
-.post-section {
-    background: var(--bg-secondary);
-    border-radius: 16px;
+/* Make all sections scrollable independently */
+.comment-section,
+.feed,
+.friend-section {
+    overflow-y: auto;
     padding: 20px;
+}
+
+/* Comment & Friend Section Styling */
+.comment-section,
+.friend-section {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow-light);
+    margin: 30px;
+}
+
+/* Scrollbar styling */
+.comment-section::-webkit-scrollbar,
+.feed::-webkit-scrollbar,
+.friend-section::-webkit-scrollbar {
+    width: 10px;
+}
+
+.comment-section::-webkit-scrollbar-thumb,
+.feed::-webkit-scrollbar-thumb,
+.friend-section::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+/* Comment list layout */
+.comment-section .comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* -------------------- COMMENT FORM -------------------- */
+.comment-form {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-secondary);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0 0 20px 20px;
+    box-shadow: inset 0 1px 3px var(--shadow-light);
+}
+
+.comment-form textarea {
+    width: 100%;
+    min-height: 60px;
+    resize: vertical;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 2px 8px var(--shadow-medium);
+}
+
+.comment-form button {
+    align-self: flex-end;
+    padding: 8px 20px;
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comment-form button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.comment-form button:active {
+    transform: scale(0.95);
+}
+
+/* Optional: Comments appearance */
+.comment-list p {
+    background: var(--bg-primary);
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 6px var(--shadow-light);
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* -------------------- FEED -------------------- */
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Posts */
+.post-section {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
 }
 
 .post-section:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px var(--shadow-medium);
+    box-shadow: 0 8px 25px var(--shadow-light);
 }
 
 .user {
@@ -202,92 +318,64 @@ body {
 }
 
 .avatar {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-primary), #ff758c);
+    background: linear-gradient(45deg, var(--accent-primary), #ff6b6b);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 600;
 }
 
 .user-info {
-    display: flex;
-    flex-direction: column;
+    flex: 1;
 }
 
 .username {
     font-weight: 600;
-    font-size: 16px;
     color: var(--text-primary);
 }
 
 .handle {
-    font-size: 14px;
     color: var(--text-secondary);
+    font-size: 14px;
 }
 
 .tweet-text {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--text-primary);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+}
+
+.tweet-image img,
+.tweet-gallery img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.tweet-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
 .tweet-actions {
     display: flex;
-    gap: 25px;
-    font-size: 14px;
+    gap: 20px;
     color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 .action {
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.action:hover {
-    color: var(--accent-primary);
-}
-
-/* Single image */
-.tweet-image {
-    margin: 12px 0;
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-.tweet-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.tweet-image img:hover {
-    transform: scale(1.02);
-}
-
-/* Multiple images (grid layout) */
-.tweet-gallery {
-    margin: 12px 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-}
-
-.tweet-gallery img {
-    width: 100%;
-    height: auto;
+/* -------------------- FRIENDS SIDEBAR -------------------- */
+.friend-section p {
+    background: var(--bg-tertiary);
+    padding: 12px;
     border-radius: 12px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.tweet-gallery img:hover {
-    transform: scale(1.03);
 }
