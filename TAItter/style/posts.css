@@ -682,3 +682,53 @@ body {
 .inline-link:hover {
     text-decoration: underline;
 }
+
+/* -------------------- HEADER USER CONTROLS -------------------- */
+.header-user-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.welcome-link {
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.welcome-text {
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.welcome-link:hover .welcome-text {
+    color: var(--accent-primary);
+}
+
+.header-link {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.header-link:hover {
+    color: var(--accent-hover);
+}
+
+.header-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--accent-primary);
+    transition: width 0.3s ease;
+}
+
+.header-link:hover::after {
+    width: 100%;
+}

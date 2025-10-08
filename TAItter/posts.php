@@ -104,7 +104,9 @@ function highlightContent($content) {
 
             <!-- User info ja logout -->
             <div class="header-user-controls">
-                <span class="welcome-text">Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?>!</span>
+                <a href="user.php" class="welcome-link">
+                    <span class="welcome-text">Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?>!</span>
+                </a>
                 <a href="manage-follows.php" class="header-link">Manage Follows</a>
                 <a href="connect/logout.php" class="header-link">Logout</a>
                 <button class="theme-toggle" onclick="toggleTheme()">
