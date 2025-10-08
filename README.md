@@ -2,6 +2,7 @@
 
   Trello linkki: https://trello.com/b/ZXwVefVb/projekti-taitter
   Etusivun linkki: http://localhost/Projekti-TAItter/TAItter/
+  Kirjaudu sisään nettisivulle: Username: Admin  Password: 1234
 
 ## Gitin käyttöön otto
 

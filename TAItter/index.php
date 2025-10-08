@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TAItter</title>
+    <title>TAItter - Connect with AI-powered social networking</title>
     <link rel="stylesheet" href="style/index.css">
     <script src="js/dark-light.js"></script>
 </head>

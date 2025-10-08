@@ -1,6 +1,6 @@
 -- phpMyAdmin SQL Dump
 -- TAItter - Social Media Platform Database
--- Database: `taitter`
+-- Database: `teht2`
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -13,7 +13,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `taitter`
+-- Database: `teht2`
 --
 
 -- --------------------------------------------------------
@@ -41,12 +41,15 @@ CREATE TABLE `users` (
 
 --
 -- Dumping data for table `users`
+-- Password for users 1-3: password123
+-- Password for Admin (user 4): your original password
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `username`, `password`, `bio`, `date_of_birth`, `created_at`) VALUES
-(1, 'Autsku', 'User', 'autsku@taitter.com', 'autsku', '$2y$10$abcdefghijklmnopqrstuv', 'New to TAItter! Excited to be here 🚀', '2000-01-15', '2025-01-10 10:00:00'),
-(2, 'Demo', 'User', 'demo@taitter.com', 'demo_user', '$2y$10$abcdefghijklmnopqrstuv', 'Tech enthusiast and AI lover', '1998-05-20', '2025-01-12 14:30:00'),
-(3, 'TAItter', 'Assistant', 'assistant@taitter.com', 'taitter_ai', '$2y$10$abcdefghijklmnopqrstuv', 'Official TAItter AI Assistant', '2025-01-01', '2025-01-01 00:00:00');
+(1, 'Autsku', 'User', 'autsku@taitter.com', 'autsku', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'New to TAItter! Excited to be here 🚀', '2000-01-15', '2025-01-10 10:00:00'),
+(2, 'Demo', 'User', 'demo@taitter.com', 'demo_user', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Tech enthusiast and AI lover', '1998-05-20', '2025-01-12 14:30:00'),
+(3, 'TAItter', 'Assistant', 'assistant@taitter.com', 'taitter_ai', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Official TAItter AI Assistant', '2025-01-01', '2025-01-01 00:00:00'),
+(4, 'Admin1', 'Admin2', 'Admin@taitter.com', 'Admin', '$2y$10$fGZXFxu93JqbwmQAWmB/2OkAW1RRaz9nfFBtQvglyQiHxKaoM2In2', 'op', '2000-01-01', '2025-10-08 06:33:58');
 
 -- --------------------------------------------------------
 
@@ -223,7 +226,7 @@ INSERT INTO `followed_users` (`follower_id`, `followed_id`, `followed_at`) VALUE
 --
 
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `posts`
   MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

@@ -18,7 +18,15 @@
     </header>
     <section class="content">
         <h2>Sign up</h2>
-        <form action="-.php" method="post" class="sign-form">
+        
+        <?php
+        // Näytä virheilmoitus jos on
+        if (isset($_GET['error'])) {
+            echo '<p style="color: red; text-align: center;">' . htmlspecialchars($_GET['error']) . '</p>';
+        }
+        ?>
+        
+        <form action="connect/signup-process.php" method="post" class="sign-form">
             <div class="form-group">
                 <label for="fname">First name:</label>
                 <input type="text" id="fname" name="fname" required>
@@ -42,6 +50,10 @@
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio (description):</label>
+                <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
             </div>
             <input type="submit" value="Sign Up">
             <p>You already have an account? <a href="login.php">Log in</a></p>

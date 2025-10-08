@@ -18,6 +18,18 @@
     </header>
     <section class="content">
         <h2>Log in</h2>
+        
+        <?php
+        // Näytä virheilmoitus jos on
+        if (isset($_GET['error'])) {
+            echo '<p style="color: red; text-align: center;">' . htmlspecialchars($_GET['error']) . '</p>';
+        }
+        // Näytä onnistumisviesti jos on
+        if (isset($_GET['success'])) {
+            echo '<p style="color: green; text-align: center;">' . htmlspecialchars($_GET['success']) . '</p>';
+        }
+        ?>
+        
         <form action="connect/log.php" method="post" class="log-form">
             <div class="form-group">
                 <label for="usernamex">Username:</label>
