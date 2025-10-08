@@ -10,25 +10,22 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Tarkista onko käyttäjä seurannut mitään
-$has_follows_sql = "SELECT 
-    (SELECT COUNT(*) FROM followed_hashtags WHERE user_id = :user_id1) +
-    (SELECT COUNT(*) FROM followed_users WHERE follower_id = :user_id2) as total_follows";
-$has_follows_stmt = $yhteys->prepare($has_follows_sql);
-$has_follows_stmt->execute([':user_id1' => $user_id, ':user_id2' => $user_id]);
-$has_follows = $has_follows_stmt->fetch()['total_follows'] > 0;
+// Tarkista mikä näkymä valittu (default: all)
+$view = isset($_GET['view']) ? $_GET['view'] : 'all';
 
-// Jos käyttäjä ei seuraa mitään, näytä KAIKKI postaukset
-// Muuten näytä vain suodatetut postaukset
-if (!$has_follows) {
-    // Näytä KAIKKI postaukset
-    $sql = "SELECT p.*, u.username, u.first_name, u.last_name 
-            FROM posts p 
-            JOIN users u ON p.user_id = u.user_id 
-            ORDER BY p.created_at DESC";
-    $stmt = $yhteys->query($sql);
-    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} else {
+// Tarkista onko käyttäjä seurannut mitään
+$check_hashtags = $yhteys->prepare("SELECT COUNT(*) as count FROM followed_hashtags WHERE user_id = :user_id");
+$check_hashtags->execute([':user_id' => $user_id]);
+$hashtag_count = $check_hashtags->fetch()['count'];
+
+$check_users = $yhteys->prepare("SELECT COUNT(*) as count FROM followed_users WHERE follower_id = :user_id");
+$check_users->execute([':user_id' => $user_id]);
+$user_count = $check_users->fetch()['count'];
+
+$has_follows = ($hashtag_count + $user_count) > 0;
+
+// Valitse query näkymän mukaan
+if ($view === 'personalized' && $has_follows) {
     // Näytä VAIN suodatetut postaukset
     $sql = "SELECT DISTINCT p.*, u.username, u.first_name, u.last_name 
             FROM posts p 
@@ -55,6 +52,14 @@ if (!$has_follows) {
     $stmt = $yhteys->prepare($sql);
     $stmt->execute([':user_id' => $user_id]);
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    // Näytä KAIKKI postaukset
+    $sql = "SELECT p.*, u.username, u.first_name, u.last_name 
+            FROM posts p 
+            JOIN users u ON p.user_id = u.user_id 
+            ORDER BY p.created_at DESC";
+    $stmt = $yhteys->query($sql);
+    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Funktio avatarin luomiseen
@@ -80,28 +85,21 @@ function highlightContent($content) {
   <script defer src="js/dark-light.js"></script>
   <script defer src="js/posts.js"></script>
   <title>Posts - TAItter</title>
-  <style>
-    .clickable {
-        cursor: pointer;
-        text-decoration: underline;
-    }
-    .clickable:hover {
-        opacity: 0.8;
-    }
-    .filter-notice {
-        background: var(--card-bg);
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        text-align: center;
-        border: 2px solid var(--primary-color);
-    }
-  </style>
 </head>
 <body>
     <header class="header">
         <div class="header-content">
             <a href="index.php" class="logo"><span class="logo-highlight">TAI</span>tter</a>
+
+            <!-- View Toggle Buttons -->
+            <div class="view-toggle">
+                <a href="posts.php?view=all" class="view-btn <?= $view === 'all' ? 'active' : '' ?>">
+                    🌍 All Posts
+                </a>
+                <a href="posts.php?view=personalized" class="view-btn <?= $view === 'personalized' ? 'active' : '' ?>" <?= !$has_follows ? 'style="opacity: 0.5; pointer-events: none;" title="Follow hashtags or users first"' : '' ?>>
+                    ✨ Following
+                </a>
+            </div>
 
             <!-- Search Bar -->
             <div class="search-bar">
@@ -151,16 +149,15 @@ function highlightContent($content) {
             </div>
 
             <!-- Filter Notice -->
-            <?php if (!$has_follows): ?>
+            <?php if ($view === 'all'): ?>
                 <div class="filter-notice">
                     <strong>🌍 Showing all posts</strong>
-                    <p style="margin: 10px 0;">You're not following anyone yet. Click on #hashtags or @usernames to personalize your feed!</p>
-                    <a href="manage-follows.php" style="color: var(--primary-color);">Manage follows →</a>
+                    <p style="margin: 10px 0;">Browse everything on TAItter. Click on #hashtags or @usernames to follow them!</p>
                 </div>
-            <?php else: ?>
+            <?php elseif ($view === 'personalized' && $has_follows): ?>
                 <div class="filter-notice">
                     <strong>✨ Personalized feed</strong>
-                    <p style="margin: 10px 0;">Showing posts from your followed hashtags and users</p>
+                    <p style="margin: 10px 0;">Showing posts from <?= $hashtag_count ?> hashtags and <?= $user_count ?> users you follow</p>
                     <a href="manage-follows.php" style="color: var(--primary-color);">Manage follows →</a>
                 </div>
             <?php endif; ?>
@@ -189,15 +186,19 @@ function highlightContent($content) {
                 <?php endforeach; ?>
             <?php else: ?>
                 <div class="post-section">
-                    <p>No posts available yet. 📭</p>
-                    <p>Be the first to post something!</p>
+                    <p>No posts matching your filters. 📭</p>
+                    <?php if ($view === 'personalized'): ?>
+                        <p>Try <a href="posts.php?view=all" style="color: var(--primary-color);">viewing all posts</a> or <a href="manage-follows.php" style="color: var(--primary-color);">follow more hashtags/users</a>!</p>
+                    <?php else: ?>
+                        <p>Be the first to post something!</p>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>
 
         <!-- Friends Sidebar -->
         <div class="friend-section">
-            <h2>Following</h2>
+            <h2>Following (<?= $user_count ?>)</h2>
             <?php
             // Näytä käyttäjän seuraamat käyttäjät
             $follows_sql = "SELECT u.username, u.first_name, u.last_name 
@@ -224,7 +225,34 @@ function highlightContent($content) {
                 <p>Not following anyone yet 👥</p>
                 <small>Click on @usernames in posts to follow!</small>
             <?php endif; ?>
-            <a href="manage-follows.php" style="display: block; margin-top: 10px; color: var(--primary-color);">View all →</a>
+            
+            <h2 style="margin-top: 20px;">Hashtags (<?= $hashtag_count ?>)</h2>
+            <?php
+            // Näytä käyttäjän seuraamat hashtagit
+            $hashtags_sql = "SELECT h.hashtag_name 
+                            FROM followed_hashtags fh
+                            JOIN hashtags h ON fh.hashtag_id = h.hashtag_id
+                            WHERE fh.user_id = :user_id
+                            LIMIT 5";
+            $hashtags_stmt = $yhteys->prepare($hashtags_sql);
+            $hashtags_stmt->execute([':user_id' => $user_id]);
+            $followed_hashtags_list = $hashtags_stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            if (count($followed_hashtags_list) > 0):
+                foreach ($followed_hashtags_list as $hashtag):
+            ?>
+                <div style="padding: 5px;">
+                    <strong style="color: var(--primary-color);">#<?= htmlspecialchars($hashtag['hashtag_name']) ?></strong>
+                </div>
+            <?php 
+                endforeach;
+            else:
+            ?>
+                <p>Not following any hashtags yet 🏷️</p>
+                <small>Click on #hashtags in posts to follow!</small>
+            <?php endif; ?>
+            
+            <a href="manage-follows.php" style="display: block; margin-top: 15px; color: var(--primary-color); text-align: center; font-weight: bold;">Manage all follows →</a>
         </div>
   </section>
 
@@ -256,7 +284,7 @@ function highlightContent($content) {
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        location.reload(); // Refresh to show filtered posts
+                        location.reload();
                     } else {
                         alert(data.message || 'Already following or error occurred');
                     }
@@ -286,7 +314,7 @@ function highlightContent($content) {
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        location.reload(); // Refresh to show filtered posts
+                        location.reload();
                     } else {
                         alert(data.message || data.error || 'Already following or error occurred');
                     }
